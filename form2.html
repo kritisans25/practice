@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM MANINPULATION</title>
+    <script>
+        function onhandleclick()
+    {
+        var text=document.getElementById("text").value;
+        var date=document.getElementById("date").value;
+        var gender=document.querySelector('[name="gender"]:checked').value;
+        var fruit=document.getElementsByName("name");
+        var printfruit="";
+        for(var val of fruit){
+            if(val.checked){
+                printfruit+=val.value+",";
+            }
+        }
+        var drop=document.getElementsByName("dropdown");
+        var selectedcourse=[];
+        for(var val of drop.options){
+            if(val.selected){
+                selectedcourse.push(val.value);
+            }
+            var printCourse = selectedcourse.join(", ");
+            var print = Text: ${text} <br> ${date} <br> ${gender} <br> ${printFruit} <br> ${printCourse};
+            document.getElementById("displayText").innerHTML = print;
+        }
+
+    }
+    </script>
+</head>
+<body>
+    <form onsubmit="onhandleclick()">
+        <input type="text" name="text" id="text"/>
+        <input type="date" name="date" id="date"/>
+        <br><br>
+        <input type="radio" name="gender" id="gender" value="MALE"/>MALE
+        <input type="radio" name="gender" id="gender" value="FEMALE"/>FEMALE
+        <br><br>
+        <input type="checkbox"name="fruit"id="fruit"value="apple"/>APPLE
+        <input type="checkbox"name="fruit"id="fruit"value="banana"/>BANANA
+        <input type="checkbox"name="fruit"id="fruit"value="strawberry"/>STRAWBERRY
+        <br><br>
+        <select name="dropdown" multiple>
+            <option value="math">MATH</option>
+            <option value="science">SCIENCE</option>
+        </select>
+        <button onclick="submit">SUBMIT</button>
+    </form>
+</body>
+</html>
