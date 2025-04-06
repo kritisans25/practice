@@ -1,11 +1,69 @@
-<html>
-    <body>
-        <form action="/process_get" method="get">
-            FIRST NAME:
-            <input type="text" name="first_name">
-            SECOND NAME:
-            <input type="text" name="second_name">
-            <input type="submit" name="SUBMIT">
-        </form>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruits List</title>
+    <style>
+
+      .hide {
+        visibility: hidden;
+      }
+
+      .bg {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fruits</h1>
+    <form action="">
+      <input type="text" id="fruit" name="fruit" required /><br /><br />
+      <button type="button" onclick="onSubmit()">Submit</button>
+      <button type="button" id="swap" class="hide" onclick="swapFirstAndLast()">
+        Swap First and Last Element
+      </button>
+    </form>
+    <ul id="fruits"></ul>
+    <script>
+      let counter = 0;
+
+      function onSubmit() {
+        const fruit = document.getElementById("fruit").value;
+        const list = document.getElementById("fruits");
+
+        if (fruit.trim() !== "") {
+          const listItem = document.createElement("li");
+          listItem.innerText = fruit;
+          list.appendChild(listItem);
+          counter++;
+
+          if (counter > 1) {
+            document.getElementById("swap").classList.remove("hide");
+          
+          }
+
+          document.getElementById("fruit").value = "";
+        }
+      }
+
+      function swapFirstAndLast() {
+        const list = document.getElementById("fruits");
+        const items = list.getElementsByTagName("li");
+
+        if (items.length > 1) {
+          const firstItem = items[0];
+          const lastItem = items[items.length - 1];
+
+          const firstText = firstItem.textContent;
+          const lastText = lastItem.textContent;
+
+          firstItem.textContent = lastText;
+          firstItem.classList.add("bg");
+          lastItem.textContent = firstText;
+          lastItem.classList.add("bg");
+        }
+      }
+    </script>
+  </body>
 </html>

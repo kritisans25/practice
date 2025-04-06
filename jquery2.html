@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details Form</title>
+    <!-- Include jQuery Library -->
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        p {
+            font-size: 18px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Details Form</h1>
+    <form id="bookForm">
+        <!-- Title -->
+        Title: <input type="text" name="title" placeholder="Enter book title" required><br>
+        
+        <!-- Author -->
+        Author: <input type="text" name="author" placeholder="Enter author name" required><br>
+        
+        <!-- Price -->
+        Price: <input type="number" name="price" placeholder="Enter price" required><br>
+        
+        <!-- Publication -->
+        Publication: <input type="text" name="publication" placeholder="Enter publication name" required><br>
+        
+        <!-- Edition -->
+        Edition: <input type="number" name="edition" placeholder="Enter edition number" required><br>
+        
+        <!-- Type -->
+        Type:
+        <select name="type">
+            <option value="Comic">Comic</option>
+            <option value="Science">Science</option>
+            <option value="Maths">Maths</option>
+            <option value="Story">Story</option>
+        </select><br>
+
+        <!-- Submit Button -->
+        <button type="button" id="submitBtn">Submit</button>
+    </form>
+
+    <!-- Paragraph to display serialized data -->
+    <p id="output"></p>
+
+    <!-- jQuery Script -->
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#submitBtn').click(function() {
+                // Serialize form data as an array
+                var serializedData = $('#bookForm').serializeArray();
+                
+                // Prepare output string
+                var output = "Book Details:<br>";
+                serializedData.forEach(function(field) {
+                    output += `${field.name}: ${field.value}<br>`;
+                });
+
+                // Display serialized data in the paragraph
+                $('#output').html(output);
+            });
+        });
+    </script>
+</body>
+</html>
